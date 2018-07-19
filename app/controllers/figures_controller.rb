@@ -6,11 +6,15 @@ class FiguresController < ApplicationController
   end
 
   post '/figures' do
-    @figure = Figure.create(params)
+    binding.pry
+    @figure = Figure.create(figure)
     redirect to '/figures'
   end
 
   get '/figures/new' do
+    @titles = Title.all
+    @figures = Figure.all
+    @landmarks = Landmark.all
     erb :'/figures/new'
   end
 

@@ -3,8 +3,26 @@
 </head>
 <body>
   <form action="/figures" method="post">
-    <label for="name">Name:</label><br>
-    <input type="text" id="name" name="name" placeholder="John Doe"/><br><br>
+    <label for="name"><h3>Name:</h3></label><br>
+    <input type="text" id="figure_name" name="figure[name]" placeholder="John Doe"/><br><br>
+
+    <!-- <label for="figure_title_id">Name:</label><br> -->
+    <h3>Title:</h3>
+    <% @titles.each do |title| %>
+    <label for="<% title.id %>"><%= title.name %></label>
+    <input type="checkbox" id="<% title.id %>" name="figure[title_ids][]" placeholder="President" value="<%= title.id %>"/><br><br>
+    <% end %>
+
+<!-- create new title -->
+
+    <h3>Landmark:</h3>
+    <% @landmarks.each do |landmark| %>
+    <label for="<% landmark.id %>"><%= landmark.name %></label>
+    <input type="checkbox" id="<% landmark.id %>" name="figure[landmark_ids][]" placeholder="London Bridge" value="<%= landmark.id %>"/><br><br>
+    <% end %>
+
+<!-- create new landmark -->
+
     <input type="submit" value="Create New Figure"/>
   </form>
 </body>
