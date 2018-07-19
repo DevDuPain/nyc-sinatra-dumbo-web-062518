@@ -6,9 +6,12 @@ class FiguresController < ApplicationController
   end
 
   post '/figures' do
-    binding.pry
-    @figure = Figure.create(figure)
-
+    # binding.pry
+    @figure = Figure.find_or_create_by(name: figure)
+    @landmark = Landmark.find_or_create_by(landmark )
+    Landmark.update(@landmark.id, figure_id: @figure.id)
+    @title = Title.find_or_create_by(title)
+    @figure_title = FigureTitle.find_or_create_by(title_id: @title.id, figure_id: @figure.id)
     redirect to '/figures'
   end
 
@@ -30,14 +33,22 @@ class FiguresController < ApplicationController
   end
 
   patch '/figures/:id' do
-    @figure = Figure.update(params[:id], figure)
+    @figure = Figure.update(params[:id], name: figure)
     redirect to "/figures/#{@figure.id}"
   end
 
 
   private
   def figure
-    params[:figure]
+    params[:figure][:name]
+  end
+
+  def title
+    params[:title]
+  end
+
+  def landmark
+    params[:landmark]
   end
 
 end
