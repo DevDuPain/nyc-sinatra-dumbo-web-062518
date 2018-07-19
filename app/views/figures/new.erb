@@ -10,7 +10,7 @@
     <h3>Title:</h3>
     <% @titles.each do |title| %>
     <label for="<% title.id %>"><%= title.name %></label>
-    <input type="checkbox" id="title_<%= title.id %>" name="figure[title_ids][]" placeholder="President" value="title_<%= title.id %>"/><br><br>
+    <input type="checkbox" id="title_<%= title.id %>" name="figure[title_ids][]" placeholder="President" value="<%= title.id %>"/><br><br>
     <% end %>
 
 <!-- create new title -->
@@ -20,7 +20,7 @@
     <h3>Landmark:</h3>
     <% @landmarks.each do |landmark| %>
     <label for="<% landmark.id %>"><%= landmark.name %></label>
-    <input type="checkbox" id="landmark_<% landmark.id %>" name="figure[landmark_ids][]" placeholder="London Bridge" value="landmark_<%= landmark.id %>"/><br><br>
+    <input type="checkbox" id="landmark_<%= landmark.id %>" name="figure[landmark_ids][]" placeholder="London Bridge" value="<%= landmark.id %>"/><br><br>
     <% end %>
 
 <!-- create new landmark -->

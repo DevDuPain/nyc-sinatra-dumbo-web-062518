@@ -6,13 +6,23 @@ class FiguresController < ApplicationController
   end
 
   post '/figures' do
-    # binding.pry
     @figure = Figure.find_or_create_by(name: figure)
-    @landmark = Landmark.find_or_create_by(landmark )
-    Landmark.update(@landmark.id, figure_id: @figure.id)
+    params[:figure][:title_ids].each do |title|
+      FigureTitle.find_or_create_by(figure_id: @figure.id, title_id: title)
+    end
     @title = Title.find_or_create_by(title)
-    @figure_title = FigureTitle.find_or_create_by(title_id: @title.id, figure_id: @figure.id)
+    @figure.titles << @title
+    @figure.save
+    binding.pry
+    @landmark = Landmark.find_or_create_by(landmark)
+    @landmark.update(figure_id: @figure.id)
+    params[:figure][:landmark_ids].each do |landmark|
+      Landmark.update(landmark, figure_id: @figure.id)
+    end
+    # Landmark.update(@landmark.id, figure_id: @figure.id)
+
     redirect to '/figures'
+
   end
 
   get '/figures/new' do
