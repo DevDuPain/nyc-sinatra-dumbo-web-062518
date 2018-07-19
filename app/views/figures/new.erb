@@ -14,6 +14,8 @@
     <% end %>
 
 <!-- create new title -->
+    <h3>Create New Title:</h3>
+    <input type="text" id="new_title" name="figure[title_ids][]" placeholder="President">
 
     <h3>Landmark:</h3>
     <% @landmarks.each do |landmark| %>
@@ -22,8 +24,11 @@
     <% end %>
 
 <!-- create new landmark -->
+  <h3>Create New Landmark:</h3>
+  <label for="landmark_name">Name: </label><input id="landmark_name" type="text" name="figure[new_landmark][name]" placeholder="London Bridge">
+  <label for="landmark_year_completed">Year: </label><input id="landmark_year_completed" type="text" name="figure[new_landmark][year]" placeholder="1900">
 
-    <input type="submit" value="Create New Figure"/>
+    <input id="submit" type="submit" value="Create New Figure"/>
   </form>
 </body>
 </html>

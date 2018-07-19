@@ -8,6 +8,7 @@ class FiguresController < ApplicationController
   post '/figures' do
     binding.pry
     @figure = Figure.create(figure)
+
     redirect to '/figures'
   end
 
